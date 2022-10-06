@@ -22,19 +22,9 @@
 
 <div class="comments">
   {{#each post.comments}}
-    <section class="comment">
-      <div class="text">
-        {{comment}}
-      </div>
-      <div class="meta">
-        {{user.username}}
-        on
-        {{created_at}}
-      </div>
-    </section>
+    {{> comments }}
   {{/each}}
 </div>
-
 {{#if loggedIn}}
 <script src="/javascript/comment.js"></script>
 {{/if}}
