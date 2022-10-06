@@ -53,15 +53,20 @@ router.get('/:id', (req, res) => {
 })
 
 
-
-
 router.post('/', (req, res) => {
-    Comment.create(req.body)
-    .then(dbCommentData => res.json(dbCommentData))
-    .catch(err => {
+    if(req.session){
+        Comment.create({
+            comment: req.body.comment,
+            post_id: req.body.post_id,
+            user_id: req.session.user_id
+        })
+        .then(dbCommentData => res.json(dbCommentData))
+        .catch(err => {
         console.log(err);
         res.status(500).json(err);
     })
+    }
+
 })
 
 

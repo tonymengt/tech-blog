@@ -1,29 +1,38 @@
-const sequelize = require('./config/connection');
-const express = require('express');
-const controller = require('./controllers');
-const exphbs = require('express-handlebars');
 const path = require('path');
+const express = require('express');
+const session = require('express-session');
+const exphbs = require('express-handlebars');
+
+const app = express();
+const PORT = process.env.PORT || 3002;
+
+const sequelize = require("./config/connection");
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+
+const sess = {
+  secret: 'Super secret secret',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
+};
+
+app.use(session(sess));
+
 
 const hbs = exphbs.create({});
 
-// this is for port connection
-const app = express();
-const PORT = process.env.PORT || 3002;
-// this is being able to use put methods
-app.use(express.json());
-app.use(express.urlencoded({extended:true}));
-// importing the routes within the controllers
-app.use(controller);
-// set handlebars as default tempalte engine
-app.engine('handlbars', hbs.engine);
-app.set('view engine', 'handlbars');
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(require('./controllers/'));
 
-
-sequelize.sync({force : false}).then(() => {
-    app.listen(PORT, () => {
-        console.log("now connected and listening!!!")
-    })
-})
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});
