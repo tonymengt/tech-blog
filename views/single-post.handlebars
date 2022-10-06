@@ -1,7 +1,7 @@
 <article class="post">
   <div class="title">
     <p>{{post.title}}</p>
-    <p>posted by {{post.user.username}} on {{post.created_at}}</p>
+    <p>posted by {{post.user.username}} on {{format_date post.created_at}}</p>
   </div>
   <div class="meta">
     <p>{{post.content}}</p>
@@ -20,11 +20,8 @@
 </form>
 {{/if}}
 
-<div class="comments">
-  {{#each post.comments}}
-    {{> comments }}
-  {{/each}}
-</div>
+{{>comments}}
+
 {{#if loggedIn}}
 <script src="/javascript/comment.js"></script>
 {{/if}}
