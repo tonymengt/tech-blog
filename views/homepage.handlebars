@@ -1,0 +1,13 @@
+<ol>
+    {{#each post}}
+    <li>
+        <article>
+            <div>
+                <p>{{title}}</p>
+                <p>posted by {{user.username}} on {{created_at}}</p>
+                <p>{{content}}</p>                
+            </div>
+        </article>
+    </li>
+    {{/each}}
+</ol>
