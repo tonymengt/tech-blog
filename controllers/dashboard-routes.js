@@ -7,6 +7,9 @@ router.get("/", auth, (req, res) => {
     where: {
       user_id: req.session.user_id,
     },
+    order:[
+        ['created_at', 'DESC']
+      ],
     attributes: ["id", "title", "content", "created_at"],
     include: [
       {
@@ -44,12 +47,18 @@ router.get('/edit/:id', auth, (req, res) => {
             {
                 model: Comment,
                 attributes: [ 'id', 'comment', 'post_id', 'created_at'],
+                order:[
+                    ['created_at', 'DESC']
+                  ],
                 include:[{
                     model:User,
                     attributes: ['username']
                 }]
             }
-          ]
+          ],
+          order:[
+            [Comment, 'created_at', 'DESC']
+          ],
         })
     .then(dbPostData => {
         if (!dbPostData) {

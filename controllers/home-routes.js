@@ -5,6 +5,9 @@ router.get("/", (req, res) => {
     console.log(req.session);
     Post.findAll({
         attributes: ['id','title', 'content', 'created_at'],
+        order:[
+          ['created_at', 'DESC']
+        ],
         include: [{
             model:User,
             attributes: ['username']
@@ -28,6 +31,7 @@ router.get('/post/:id', (req, res) => {
       where: {
         id: req.params.id
       },
+     
       attributes: [
         'id',
         'title',
@@ -47,7 +51,11 @@ router.get('/post/:id', (req, res) => {
                 attributes: ['username']
             }]
         }
-      ]
+      ],
+      order:[
+        [Comment, 'created_at', 'DESC']
+      ],
+
     })
       .then(dbPostData => {
         if (!dbPostData) {
