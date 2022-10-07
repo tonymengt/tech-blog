@@ -10,17 +10,32 @@
     color: #333;
   }
   
+  header a {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: bold;
+    transition: color .1s;
+
+  }
+  
+  header a:hover {
+    color: #1b9cf8;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #ffffff;
+  }
+  
   a {
     text-decoration: none;
-    color: #225ca3;
+    color: rgb(67, 122, 194);
     font-weight: bold;
     transition: color .1s;
   }
-  
+
   a:hover {
-    color: #3486eb;
+    color: rgb(227, 113, 37);
   }
-  
+
   button {
     background-color: #225ca3;
     border: 0;
@@ -39,8 +54,10 @@
   .post-list {
     margin: 0;
     padding: 0;
+    list-style: none;
   }
   
+
   textarea, input {
     padding: .5%;
     border-radius: 5px;
@@ -80,6 +97,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 1%;
+    background-color: rgb(238, 111, 27);
   }
   
   header h1 {
@@ -108,7 +126,28 @@
     background: none;
     color: #3486eb;
   }
-  
+  .btn-with-style {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: #ffffff;
+    font-size: 100%;
+    font-weight: bold;
+    transition: color .1s;
+    margin-left: 16px;
+    margin-right: 5px;
+  }
+  .btn-with-style:hover {
+    /* background: none; */
+    color: #1b9cf8;
+    margin-right: 5px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: white;
+  }
+
   .delete-post-btn {
     background-color: #d41414;
   }
@@ -118,14 +157,49 @@
   }
   
   .post {
+    padding: 10px;
+    background-color: rgb(238, 111, 27);
+    border-radius: 5px;
     margin-bottom: 2%;
     line-height: 150%;
   }
   
+.post .title {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.post .title p {
+  align-items: top;
+  margin: 0;
+}
+
+#post-title {
+  font-weight: bold;
+  color: rgb(67, 122, 194);
+}
+
   .post .title span {
     font-style: italic;
     font-size: 90%;
     color: #7d7d7d;
+  }
+
+  .post .meta {
+    background-color: white;
+    padding: 10px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  }
+  .post .meta  p{
+   margin: 0;
   }
   
   .edit-link {
